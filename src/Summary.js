@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
+import StarRating from "./StarRating/StarRating";
 
 function Summary() {
   const [items, setItems] = useState([]);
@@ -14,9 +15,7 @@ function Summary() {
 
   const searchByName = (value) => {
     const temp = items.filter((item) => {
-      if (item.Name.toLowerCase().indexOf(value.toLowerCase()) > -1) {
-        return item;
-      }
+      return item.Name.toLowerCase().indexOf(value.toLowerCase()) > -1;
     });
     setItemsCopy(temp);
   };
@@ -29,8 +28,7 @@ function Summary() {
           <thead>
             <tr>
               <th>
-                Customer
-                {" "}
+                Customer{" "}
                 <input
                   type="text"
                   defaultValue=""
@@ -49,12 +47,15 @@ function Summary() {
             {itemsCopy.map((item, idx) => {
               return (
                 <tr key={idx}>
-                  <th>{item.Name}</th>
-                  <th>{item.Bun}</th>
-                  <th>{item.Cheese}</th>
-                  <th>{item.Cutlets}</th>
-                  <th>{item.Salad}</th>
-                  <th>{item.Total}</th>
+                  <td>{item.Name}</td>
+                  <td>{item.Bun}</td>
+                  <td>{item.Cheese}</td>
+                  <td>{item.Cutlets}</td>
+                  <td>{item.Salad}</td>
+                  <td>{item.Total}</td>
+                  <td>
+                    <StarRating />
+                  </td>
                 </tr>
               );
             })}
